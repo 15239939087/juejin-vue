@@ -1,24 +1,31 @@
 <template>
-  <div class="wrapper">
-    <div class="nav">
-      <div class="nav-item">
-        <a
-          :class="{ 'nav-cell': true, 'nav-active': currentIndex === index }"
-          v-for="(nav, index) in navItems"
-          v-bind:key="nav"
-          @click="change(index)"
-        >
-          {{ nav.label }}</a
-        >
+  <div class="root">
+    <div class="wrapper">
+      <div class="nav">
+        <div class="nav-item">
+          <a
+            :class="{ 'nav-cell': true, 'nav-active': currentIndex === index }"
+            v-for="(nav, index) in navItems"
+            v-bind:key="nav"
+            @click="change(index)"
+          >
+            {{ nav.label }}</a
+          >
+        </div>
+        <div class="nav-manage">标签管理</div>
       </div>
-      <div class="nav-manage">标签管理</div>
     </div>
+    <Label />
   </div>
 </template>
 
 <script>
+import Label from "@/components/Label/index.vue";
 export default {
   name: "Nav",
+  components: {
+    Label
+  },
   data() {
     return {
       currentIndex: 0,

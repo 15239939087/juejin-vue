@@ -8,9 +8,9 @@
 
 <script>
 // @ is an alias to /src
-import Header from "@/views/Header";
-import Article from "@/views/Article";
-import Nav from "@/views/Nav";
+import Header from "@/components/Header";
+import Article from "@/components/Article";
+import Nav from "@/components/Nav";
 
 export default {
   name: "Home",
