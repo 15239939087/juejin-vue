@@ -3,7 +3,11 @@
     <div class="main">
       <div class="left">
         <div class="content">
-          <article class="article" v-for="art in articles" v-bind:key="art">
+          <article
+            class="article"
+            v-for="(art, index) in articles"
+            v-bind:key="index"
+          >
             <div class="desc">
               {{ art.name }} · {{ art.date }} · {{ art.label }}
             </div>

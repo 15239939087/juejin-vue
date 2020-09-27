@@ -6,8 +6,9 @@
           <a
             :class="{ 'nav-cell': true, 'nav-active': currentIndex === index }"
             v-for="(nav, index) in navItems"
-            v-bind:key="nav"
+            v-bind:key="index"
             @click="change(index)"
+            @mouseover="getPositionLabel(index)"
           >
             {{ nav.label }}</a
           >
@@ -15,7 +16,10 @@
         <div class="nav-manage">标签管理</div>
       </div>
     </div>
-    <Label />
+    <Label
+      activeLabelEleT="activeLabelEleT"
+      activeLabelEleL="activeLabelEleL"
+    />
   </div>
 </template>
 
@@ -29,6 +33,8 @@ export default {
   data() {
     return {
       currentIndex: 0,
+      activeLabelEleT: 0,
+      activeLabelEleL: 0,
       navItems: [
         {
           id: 1,
@@ -76,6 +82,13 @@ export default {
   methods: {
     change: function(index) {
       this.currentIndex = index;
+    },
+    getPositionLabel: function(index) {
+      let activeLabelEle = document.getElementsByClassName("nav-cell")[index];
+      let activeLabelEleL = activeLabelEle.getBoundingClientRect().left;
+      let activeLabelEleT = activeLabelEle.getBoundingClientRect().top;
+      this.activeLabelEleT = activeLabelEleT;
+      this.activeLabelEleL = activeLabelEleL;
     }
   }
 };

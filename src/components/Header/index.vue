@@ -7,7 +7,7 @@
           :class="{ 'bar-item': true, 'bar-active': currentIndex === index }"
           v-for="(list, index) in barList"
           @click="change(index)"
-          v-bind:key="list"
+          v-bind:key="index"
         >
           {{ list.barItem }}
         </li>

@@ -1,15 +1,31 @@
 <template>
-  <div class="wrapper">label</div>
+  <div class="wrapper-label" :style="[left, top]">
+    {{ activeLabelEleL }}{{ activeLabelEleT }}
+  </div>
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "index",
+  data() {
+    return {
+      left: {
+        left: this.activeLabelEleL
+      },
+      top: {
+        top: this.activeLabelEleT
+      }
+    };
+  },
+  props: {
+    activeLabelEleT: Number,
+    activeLabelEleL: Number
+  }
 };
 </script>
 
 <style scoped lang="scss">
-.wrapper {
+.wrapper-label {
   position: absolute;
   top: 106px;
   left: 100px;
