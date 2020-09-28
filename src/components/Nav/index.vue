@@ -8,7 +8,8 @@
             v-for="(nav, index) in navItems"
             v-bind:key="index"
             @click="change(index)"
-            @mouseover="getPositionLabel(index)"
+            @mouseover="showPositionLabel(index)"
+            @mouseleave="hidePositionLabel"
           >
             {{ nav.label }}</a
           >
@@ -17,8 +18,11 @@
       </div>
     </div>
     <Label
-      activeLabelEleT="activeLabelEleT"
-      activeLabelEleL="activeLabelEleL"
+      v-if="isShowLabel"
+      :isShowLabel="isShowLabel"
+      :activeLabelEleT="activeLabelEleT"
+      :activeLabelEleL="activeLabelEleL"
+      v-on:listenToChildEvent="showLabel"
     />
   </div>
 </template>
@@ -35,6 +39,7 @@ export default {
       currentIndex: 0,
       activeLabelEleT: 0,
       activeLabelEleL: 0,
+      isShowLabel: false,
       navItems: [
         {
           id: 1,
@@ -83,12 +88,26 @@ export default {
     change: function(index) {
       this.currentIndex = index;
     },
-    getPositionLabel: function(index) {
+    /**
+     * @desc 显示每个nav下的标签
+     * @param index 标签的索引
+     */
+    showPositionLabel: function(index) {
       let activeLabelEle = document.getElementsByClassName("nav-cell")[index];
       let activeLabelEleL = activeLabelEle.getBoundingClientRect().left;
       let activeLabelEleT = activeLabelEle.getBoundingClientRect().top;
       this.activeLabelEleT = activeLabelEleT;
       this.activeLabelEleL = activeLabelEleL;
+      this.isShowLabel = true;
+    },
+    /**
+     * @desc 隐藏每个nav下的标签
+     */
+    hidePositionLabel: function() {
+      this.isShowLabel = false;
+    },
+    showLabel: function(data) {
+      this.isShowLabel = data;
     }
   }
 };

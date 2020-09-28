@@ -14,7 +14,10 @@
       </ul>
       <ul class="operation">
         <li class="operation-item">
-          <input class="search" type="text" placeholder="搜索掘金" />
+          <div class="input">
+            <input class="search control" type="text" placeholder="搜索掘金" />
+            <label for="" class="input-label">搜索掘金</label>
+          </div>
         </li>
         <li class="operation-item"><button class="write">写文章</button></li>
         <li class="operation-ding">
@@ -99,7 +102,7 @@ export default {
 .operation {
   display: flex;
   margin: 0;
-  padding-left: 128px;
+  padding-left: 108px;
 }
 .operation li {
   list-style: none;
@@ -108,15 +111,56 @@ export default {
   padding: 0px 14px;
 }
 
+
+.input {
+  position: relative;
+  border-bottom: 1px solid #d0d0d5;
+}
+
+
 .search {
   width: 148px;
   height: 28px;
   outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 0 12px;
+  color: #bbbbbb;
+  /*border: 1px solid rgba(0, 0, 0, 0.2);*/
+  border-bottom: 1px solid #d0d0d5;
 }
-.search::-webkit-input-placeholder {
-  color: #a1a7ac;
-  padding-left: 12px;
+
+.control {
+  margin: 0;
+  line-height: 1.5;
+  outline: none;
+}
+.control:placeholder-shown::placeholder {
+  color: transparent;
+}
+.input-label {
+  position: absolute;
+  font-size: 14px;
+  line-height: 1.5;
+  left: 16px;
+  top: 20px;
+  color: #a2a9b6;
+  padding: 0 2px;
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition: all 0.25s;
+}
+
+
+/*.search::-webkit-input-placeholder {*/
+/*  color: #2486ff;*/
+/*  padding-left: 12px;*/
+/*}*/
+
+
+.control:not(:placeholder-shown) + .input-label,
+.control:focus + .input-label {
+  color: #2486ff;
+  transform: scale(0.75) translate(-8px, -18px);
 }
 
 .write {
