@@ -111,12 +111,10 @@ export default {
   padding: 0px 14px;
 }
 
-
 .input {
   position: relative;
   border-bottom: 1px solid #d0d0d5;
 }
-
 
 .search {
   width: 148px;
@@ -150,19 +148,19 @@ export default {
   transition: all 0.25s;
 }
 
-
 /*.search::-webkit-input-placeholder {*/
 /*  color: #2486ff;*/
 /*  padding-left: 12px;*/
 /*}*/
-
 
 .control:not(:placeholder-shown) + .input-label,
 .control:focus + .input-label {
   color: #2486ff;
   transform: scale(0.75) translate(-8px, -18px);
 }
-
+.control:focus {
+  border-bottom: 1px solid #2486ff;
+}
 .write {
   height: 32px;
   background-color: #007fff;

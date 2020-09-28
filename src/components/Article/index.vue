@@ -7,6 +7,7 @@
             class="article"
             v-for="(art, index) in articles"
             v-bind:key="index"
+            id="articleContainer"
           >
             <div class="desc">
               {{ art.name }} · {{ art.date }} · {{ art.label }}
@@ -29,6 +30,7 @@ export default {
   name: "Article",
   data() {
     return {
+      isShowHeader: false,
       articles: [
         {
           name: "陈威",
@@ -152,6 +154,18 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    scrollArticle: function() {
+      let articleEle = document.getElementById("articleContainer");
+      window.onscroll = function() {
+        let t = articleEle.getBoundingClientRect().top;
+        console.log(t);
+      };
+    }
+  },
+  mounted() {
+    this.scrollArticle();
   }
 };
 </script>
